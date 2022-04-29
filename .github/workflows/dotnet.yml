@@ -1,4 +1,5 @@
 name: Build and Generate Android Apk
+
 env:
   SOLUTION_NAME: ShareLinkSampleXamAndroid
   ANDROID_PROJECT_NAME: ShareLinkSampleXamAndroid.Android
@@ -15,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - uses: fahimshahrierrasel/Xamarin-Droid-Builder@1.0.2
       - name: Building APK
         uses: ./action
         with:
