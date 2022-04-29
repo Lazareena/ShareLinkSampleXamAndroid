@@ -1,8 +1,4 @@
-name: Build
-
-env:
-  SOLUTION_NAME: ShareLinkSampleXamAndroid
-  ANDROID_PROJECT_NAME: ShareLinkSampleXamAndroid.Android
+name: .NET
 
 on:
   push:
@@ -12,10 +8,16 @@ on:
 
 jobs:
   build:
-    name: Setup Xamarin and Mono versions
-    runs-on: macos-latest
+
+    runs-on: ubuntu-latest
+
     steps:
-    - name: setup-xamarin
-      uses: maxim-lobanov/setup-xamarin@v1
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
       with:
-        xamarin-android-version: '11.0.2.0'
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
